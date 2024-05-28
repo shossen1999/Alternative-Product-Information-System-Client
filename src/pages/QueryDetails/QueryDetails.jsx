@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 
 const QueryDetails = () => {
     const query = useLoaderData();
-    const {user }=useAuth();
+    const { user } = useAuth();
     // const touristsSpot = useLoaderData();
     const { _id, product_name, product_brand, query_title, boycotting_reason, photo, email, name, currentDate, image, recommendationList, recommendationCount } = query;
     const [recommendation, setRecommendation] = useState({
@@ -85,7 +85,7 @@ const QueryDetails = () => {
                     recommendationReason: ''
                 });
 
-                  
+
             }
         } catch (error) {
             console.error("Error adding recommendation:", error);
@@ -97,147 +97,146 @@ const QueryDetails = () => {
                 <title>Query Details</title>
             </Helmet>
             <div className="flex flex-col md:flex-row lg:flex-row gap-10 bg-gray-200">
-            <div className="md:w-[40%] lg:w-[40%]">
-                <img className="p-5 rounded-[20px] h-full" src={image} alt="" />
-            </div>
-            <div className="p-10 md:p-5 lg:p-5 flex flex-col space-y-2">
-                <div className='flex justify-start items-center gap-2 p-4'>
-                    <div>
-                        <img src={photo} className='w-[40px] h-[40px] rounded-full' alt="" />
-                    </div>
-                    <div>
-                        <h3>{name}</h3>
-                        <h3>{readableDate}</h3>
-                    </div>
+                <div className="md:w-[40%] lg:w-[40%]">
+                    <img className="p-5 rounded-[20px] h-full" src={image} alt="" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900">{product_name}</h2>
-
-
-
-                <h2 className="card-title">
-                    <span className="font-bold">Product Brand : </span> {product_brand}
-                </h2>
-                <p className="text-[18px] ">
-                    <span className="font-bold text-[16px]">Query Title: </span>{query_title}
-                </p>
-                <p><span className="font-bold text-[16px]">Boycotting Reason: </span> {boycotting_reason}</p>
-                <p className="text-[18px] ">
-                    <span className="font-bold text-[16px]"> Recommendation Count: </span>{recommendationCount}
-                </p>
-
-                <div className="flex gap-2">
-                    <div className="flex items-center gap-2">
-                        <p className="font-bold">Username: </p>
+                <div className="p-10 md:p-5 lg:p-5 flex flex-col space-y-2">
+                    <div className='flex justify-start items-center gap-2 p-4'>
+                        <div>
+                            <img src={photo} className='w-[40px] h-[40px] rounded-full' alt="" />
+                        </div>
+                        <div>
+                            <h3>{name}</h3>
+                            <h3>{readableDate}</h3>
+                        </div>
                     </div>
-                    <p>{name}</p>
-                </div>
-                <div className="flex gap-2">
-                    <div className="flex items-center gap-2">
-                        <p className="font-bold">Useremail: </p>
+                    <h2 className="text-3xl font-bold text-gray-900">{product_name}</h2>
+                    <h2 className="card-title">
+                        <span className="font-bold">Product Brand: </span> {product_brand}
+                    </h2>
+                    <p className="text-[18px]">
+                        <span className="font-bold text-[16px]">Query Title: </span>{query_title}
+                    </p>
+                    <p><span className="font-bold text-[16px]">Boycotting Reason: </span> {boycotting_reason}</p>
+                    <p className="text-[18px]">
+                        <span className="font-bold text-[16px]">Recommendation Count: </span>{recommendationCount}
+                    </p>
+                    <div className="flex gap-2">
+                        <div className="flex items-center gap-2">
+                            <p className="font-bold">Username: </p>
+                        </div>
+                        <p>{name}</p>
                     </div>
-                    <p>{email}</p>
+                    <div className="flex gap-2">
+                        <div className="flex items-center gap-2">
+                            <p className="font-bold">Useremail: </p>
+                        </div>
+                        <p>{email}</p>
+                    </div>
+                    <Link to="/"><button className="btn btn-primary">Go Back to Home</button></Link>
                 </div>
+            </div>
+            <div className="mt-10">
+                <h3 className="text-2xl font-bold mb-4">Recommendations</h3>
+                {recommendations.map((recommendation, index) => (
+                    <div key={index} className="recommendation-comment mb-4 flex gap-4">
+                        <figure className="mb-4">
+                            <img src={recommendation.recommendedProductImage} className="rounded-2xl w-[300px] h-[180px]" alt="" />
+                        </figure>
+                        <div className="card bg-base-100 shadow-xl border border-gray-200 p-4 rounded-lg flex-1">
+                            <div className='flex justify-start items-center gap-2 mb-4'>
+                                <img src={photo} className='w-[40px] h-[40px] rounded-full' alt="" />
+                                <div>
+                                    <h4 className="font-bold">{recommendation.recommenderName}</h4>
+                                    <p>{new Date(recommendation.currentDate).toLocaleString()}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-bold">
+                                    <span>Product Name: </span> {recommendation.recommendationTitle}
+                                </h2>
+                                <p className="text-[14px]"><span className="font-bold">Product Brand: </span> {recommendation.recommendedProductName}</p>
+                                <p className="text-[14px]"><span className="font-bold">Recommendation Reason: </span> {recommendation.recommendationReason}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
 
+            </div>
 
-                <Link to="/"><button className="btn btn-primary">Go Back to Home</button></Link>
-
-                 {/* Recommendation Form */}
-                 
-            </div>
-            </div>
-           <div>
-           {recommendations.map((recommendation, index) => (
-                <div key={index} className="recommendation-comment">
-                    {/* Display recommendation information */}
-                    <div className="card  bg-base-100 shadow-xl mx-10 md:mx-5 lg:mx-5 border border-gray-200">
-         
-            <div className='flex justify-start items-center gap-2 p-4'>
-            
-            </div>
-            <figure className="px-10 pt-10">
-                <img src={recommendation.recommendedProductImage} className="rounded-2xl w-full h-[180px]" />
-            </figure>
-            <div className="card-body">
-                <h2 className="card-title ">
-                    <span className="font-bold ">Product Name: </span>  {recommendation. recommendationTitle}</h2>
-                <p className="text-[14px]"><span className="font-bold ">Product Brand : </span> {recommendation.recommendedProductName}</p>
-                <p className="text-[14px]">
-                    <span className="font-bold ">Query Title : </span> {recommendation.recommendationReason}
-                </p>
-                
-                {/* <div className="card-actions w-full">
-                    <Link to={`/queryDetails/${_id}`} className="w-full">
-                        <input className="btn btn-block bg-black text-white mt-8 " type="submit" value="Recommend" />
-                    </Link>
-                </div> */}
-            </div>
-        </div>
-                    {/* Add other recommendation details as needed */}
-                </div>
-            ))}
-           </div>
             <div>
-            <form onSubmit={handleAddRecommendation} className="mt-5">
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="recommendationTitle">
-                            Recommendation Title
-                        </label>
-                        <input
-                            type="text"
-                            name="recommendationTitle"
-                            value={recommendation.recommendationTitle}
-                            onChange={handleChange}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="recommendedProductName">
-                            Recommended Product Name
-                        </label>
-                        <input
-                            type="text"
-                            name="recommendedProductName"
-                            value={recommendation.recommendedProductName}
-                            onChange={handleChange}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="recommendedProductImage">
-                            Recommended Product Image URL
-                        </label>
-                        <input
-                            type="text"
-                            name="recommendedProductImage"
-                            value={recommendation.recommendedProductImage}
-                            onChange={handleChange}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="recommendationReason">
-                            Recommendation Reason
-                        </label>
-                        <textarea
-                            name="recommendationReason"
-                            value={recommendation.recommendationReason}
-                            onChange={handleChange}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required
-                        ></textarea>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <button
-                            type="submit"
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        >
-                            Add Recommendation
-                        </button>
-                    </div>
-                </form>
+                <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+                    <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Add Recommendation</h2>
+
+                    <form onSubmit={handleAddRecommendation} className="mt-5">
+                        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                            <div>
+                                <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-white" htmlFor="recommendationTitle">
+                                    Recommendation Title
+                                </label>
+                                <input
+                                    type="text"
+                                    name="recommendationTitle"
+                                    value={recommendation.recommendationTitle}
+                                    onChange={handleChange}
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="dark:text-white block text-gray-700 text-sm font-bold mb-2" htmlFor="recommendedProductName">
+                                    Recommended Product Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="recommendedProductName"
+                                    value={recommendation.recommendedProductName}
+                                    onChange={handleChange}
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="dark:text-white block text-gray-700 text-sm font-bold mb-2" htmlFor="recommendedProductImage">
+                                    Recommended Product Image URL
+                                </label>
+                                <input
+                                    type="text"
+                                    name="recommendedProductImage"
+                                    value={recommendation.recommendedProductImage}
+                                    onChange={handleChange}
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className=" dark:text-white block text-gray-700 text-sm font-bold mb-2" htmlFor="recommendationReason">
+                                    Recommendation Reason
+                                </label>
+                                <textarea
+                                    name="recommendationReason"
+                                    value={recommendation.recommendationReason}
+                                    onChange={handleChange}
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                    required
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-end mt-6">
+                            <button
+                                type="submit"
+                                className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                            >
+                                Add Recommendation
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
             </div>
         </div>
     );
