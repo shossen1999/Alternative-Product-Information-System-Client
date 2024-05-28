@@ -7,7 +7,6 @@ const MyQueries = () => {
     const myQueries = useLoaderData();
     const [queries, setQueries] = useState(myQueries);
 
-    
     const sortedQueries = queries.sort((a, b) => new Date(b.currentDate) - new Date(a.currentDate));
 
     return (
@@ -18,8 +17,6 @@ const MyQueries = () => {
             <h2>My Queries: {sortedQueries.length}</h2>
 
             <header>
-             
-
                 <div
                     className="w-full bg-center bg-cover h-[28rem]"
                     style={{
@@ -29,32 +26,44 @@ const MyQueries = () => {
                     <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
                         <div className="text-center">
                             <Link to="/addQueries">
-                            <button className="w-full px-5 py-2 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                                Add Queries
-                            </button>
+                                <button className="w-full px-5 py-2 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                                    Add Queries
+                                </button>
                             </Link>
                         </div>
                     </div>
                 </div>
             </header>
+            <h1 className='text-center text-3xl font-bold m-4'>My Queries</h1>
 
-
-
-          <div className='mt-10'>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {sortedQueries.map(myQuery =>
-                    <MyQueriesCards
-                        key={myQuery._id}
-                        queries={queries}
-                        setQueries={setQueries}
-                        myQuery={myQuery}
-                    />
-                )}
-            </div>
-          </div>
+            {sortedQueries.length === 0 ? (
+                <div className="flex flex-col items-center mt-10">
+                    <p className="text-xl font-semibold">No queries available at the moment</p>
+                    <Link to="/addQueries">
+                        <button className="w-full px-5 py-2 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                            Add Queries
+                        </button>
+                    </Link>
+                </div>
+            ) : (
+                <div className="mt-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {sortedQueries.map(myQuery => (
+                            <MyQueriesCards
+                                key={myQuery._id}
+                                queries={queries}
+                                setQueries={setQueries}
+                                myQuery={myQuery}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
 
             <div className="flex justify-center items-center my-5 md:my-8 lg:my-8">
-                <Link to="/"><button className="btn btn-primary ">Go Back to Home</button></Link>
+                <Link to="/">
+                    <button className="btn btn-primary">Go Back to Home</button>
+                </Link>
             </div>
         </div>
     );

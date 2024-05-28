@@ -94,7 +94,7 @@ const QueryDetails = () => {
     return (
         <div >
             <Helmet>
-                <title>Spot Details</title>
+                <title>Query Details</title>
             </Helmet>
             <div className="flex flex-col md:flex-row lg:flex-row gap-10 bg-gray-200">
             <div className="md:w-[40%] lg:w-[40%]">
@@ -150,17 +150,9 @@ const QueryDetails = () => {
                 <div key={index} className="recommendation-comment">
                     {/* Display recommendation information */}
                     <div className="card  bg-base-100 shadow-xl mx-10 md:mx-5 lg:mx-5 border border-gray-200">
-            {/* <Helmet>
-                <title></title>
-            </Helmet> */}
+         
             <div className='flex justify-start items-center gap-2 p-4'>
-                {/* <div>
-                    <img src={photo} className='w-[40px] h-[40px] rounded-full' alt="" />
-                </div>
-                <div>
-                    <h3>{name}</h3>
-                    <h3>{readableDate}</h3>
-                </div> */}
+            
             </div>
             <figure className="px-10 pt-10">
                 <img src={recommendation.recommendedProductImage} className="rounded-2xl w-full h-[180px]" />
