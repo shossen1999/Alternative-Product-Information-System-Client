@@ -8,13 +8,13 @@ const Queries = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortedQueries, setSortedQueries] = useState([]);
 
-    // Sort queries in descending order based on timestamp
+
     useEffect(() => {
         const sortedData = [...queriesData].sort((a, b) => new Date(b.currentDate) - new Date(a.currentDate));
         setSortedQueries(sortedData);
     }, [queriesData]);
 
-    // Filter queries based on the search query
+
     const filteredQueries = sortedQueries.filter(query =>
         query.product_name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -26,14 +26,17 @@ const Queries = () => {
             </Helmet>
             <h2>All Queries: {filteredQueries.length}</h2>
 
-            {/* Search input */}
-            <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by product name"
-                className="mb-4 p-2 border border-gray-300 rounded"
-            />
+
+            <div className='text-center'>
+                <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search by product name"
+                    className="mb-4 px-36 py-2 border border-gray-300 rounded  bg-gray-50 focus:outline-none focus:border-blue-500"
+                />
+            </div>
+
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredQueries.map(query => (

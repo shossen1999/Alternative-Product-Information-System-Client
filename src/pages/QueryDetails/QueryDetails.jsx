@@ -139,9 +139,9 @@ const QueryDetails = () => {
             <div className="mt-10">
                 <h3 className="text-2xl font-bold mb-4">Recommendations</h3>
                 {recommendations.map((recommendation, index) => (
-                    <div key={index} className="recommendation-comment mb-4 flex gap-4">
+                    <div key={index} className="recommendation-comment mb-4 flex md:flex-row lg:flex-row flex-col gap-4">
                         <figure className="mb-4">
-                            <img src={recommendation.recommendedProductImage} className="rounded-2xl w-[300px] h-[180px]" alt="" />
+                            <img src={recommendation.recommendedProductImage} className="rounded-2xl w-full lg:w-[300px] md:w-[300px] h-[180px]" alt="" />
                         </figure>
                         <div className="card bg-base-100 shadow-xl border border-gray-200 p-4 rounded-lg flex-1">
                             <div className='flex justify-start items-center gap-2 mb-4'>
