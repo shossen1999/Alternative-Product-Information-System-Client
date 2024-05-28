@@ -7,7 +7,7 @@ const Queries = () => {
     const queriesData = useLoaderData();
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Filter queries based on search query
+   
     const filteredQueries = queriesData.filter(query => query.product_name.toLowerCase().includes(searchQuery.toLowerCase()));
 
     return (

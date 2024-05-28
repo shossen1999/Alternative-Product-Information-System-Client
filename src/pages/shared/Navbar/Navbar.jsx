@@ -180,7 +180,7 @@ const Navbar = () => {
                     <div className="flex gap-2 animate_animated animate_fadeInRight">
                         <Link to='/login'><button className="btn btn-accent btn-outline font-bold">Login</button></Link>
 
-                        <Link to='/register'><button className="btn btn-ghost btn-outline font-bold">Register</button></Link>
+                       
                     </div>
 
 

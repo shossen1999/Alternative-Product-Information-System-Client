@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-
+import { FcGoogle } from "react-icons/fc";
 
 const SocialLogin = () => {
-    const { googleLogin, githubLogin } = useAuth();
+    const { googleLogin} = useAuth();
 
     // navigation systems
     const navigate = useNavigate();
@@ -27,10 +27,10 @@ const SocialLogin = () => {
             <div className="flex justify-around">
                 <button
                     onClick={() => handleSocialLogin(googleLogin)}
-                    className="btn btn-primary btn-sm btn-outline">Google</button>
-                <button
+                    className="btn btn-primary btn-sm btn-outline"><FcGoogle></FcGoogle>    Sign In With Google</button>
+                {/* <button
                     onClick={() => handleSocialLogin(githubLogin)}
-                    className="btn btn-primary btn-sm btn-outline">Github</button>
+                    className="btn btn-primary btn-sm btn-outline">Github</button> */}
             </div>
 
         </>
