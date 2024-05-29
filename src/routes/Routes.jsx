@@ -10,6 +10,7 @@ import QueryDetails from "../pages/QueryDetails/QueryDetails";
 import UpdateQueryDetails from "../pages/UpdateQueryDetails/UpdateQueryDetails";
 import MyRecommendation from "../pages/MyRecommendation/MyRecommendation";
 import RecommendationsForMe from "../pages/RecommendationsForMe/RecommendationsForMe";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         },
         {
           path:"/addQueries",
-          element:<AddQueries></AddQueries>
+          element:<PrivateRoute><AddQueries></AddQueries></PrivateRoute>
         },
         {
           path:"/allQueries",
@@ -42,15 +43,11 @@ const router = createBrowserRouter([
         },
         {
           path:"/myQueries/:email",
-          element:<MyQueries></MyQueries>,
+          element:<PrivateRoute><MyQueries></MyQueries></PrivateRoute>,
           loader:({params})=>fetch(`http://localhost:5000/Queries/user/${params.email}`)
 
         },
-        // {
-        //   path:"/spotDetails/:id",
-        //   element:<PrivateRoute><SpotDetails></SpotDetails></PrivateRoute>,
-        //   loader:({params})=>fetch(`https://journey-junction-server-gamma.vercel.app/tourSpot/${params.id}`)
-        // },
+        
         {
           path:"/queryDetails/:id",
           element:<QueryDetails></QueryDetails>,
