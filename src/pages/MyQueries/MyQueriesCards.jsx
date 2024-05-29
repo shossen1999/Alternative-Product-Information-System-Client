@@ -95,19 +95,24 @@ const MyQueriesCards = ({ myQuery, queries, setQueries }) => {
 
                 <p className="text-[14px]"><span className="font-bold ">Recommendation Count : </span>{recommendationCount}</p>
                 <div className="card-actions w-full">
-                    <Link to={`/queryDetails/${_id}`} className="btn btn-primary">View Details</Link>
+                    <Link to={`/queryDetails/${_id}`} className="btn" style={{ backgroundColor: "#18555b", color: "white" }}>View Details</Link>
                     <Link to={`/updateQuery/${_id}`}>
                         <button
-
-                            className="btn btn-primary" onClick={() => handleUpdate(_id)}>Update</button>
-
+                            className="btn"
+                            style={{ backgroundColor: "#18555b", color: "white" }}
+                            onClick={() => handleUpdate(_id)}
+                        >
+                            Update
+                        </button>
                     </Link>
-                    {/* <Link to={`/queryDetails/${_id}`} className="btn btn-primary">Delete</Link> */}
-
                     <button
                         onClick={() => handleDelete(_id)}
-                        className="btn btn-primary">Delete</button>
-                    {/* <input className="btn btn-block bg-black text-white mt-8" type="submit" value="Recommend" /> */}
+                        className="btn"
+                        style={{ backgroundColor: "#18555b", color: "white" }}
+                    >
+                        Delete
+                    </button>
+                   
                 </div>
             </div>
         </div>

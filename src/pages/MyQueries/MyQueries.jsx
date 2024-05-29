@@ -62,7 +62,8 @@ const MyQueries = () => {
 
             <div className="flex justify-center items-center my-5 md:my-8 lg:my-8">
                 <Link to="/">
-                    <button className="btn btn-primary">Go Back to Home</button>
+                    <button className="btn"
+                        style={{ backgroundColor: "#18555b", color: "white" }}>Go Back to Home</button>
                 </Link>
             </div>
         </div>
