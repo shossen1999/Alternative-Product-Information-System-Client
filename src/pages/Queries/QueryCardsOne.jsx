@@ -15,7 +15,7 @@ const QueryCardsOne = ({ query }) => {
     return (
         <div className="card card-side bg-base-100 shadow-xl border border-gray-200 mx-10 md:mx-5 lg:mx-5">
             <figure className='w-1/2 h-auto'>
-                <img src={image}  className="rounded-2xl w-full lg:w-[300px] md:w-[300px] h-[180px]" alt={product_name} />
+                <img src={image}  className="rounded-2xl w-full lg:w-[300px] md:w-[300px] md:h-[200px] lg:h-[200px] h-[250px]" alt={product_name} />
             </figure>
             <div className='w-1/2 p-4'>
                 <div className='flex items-center gap-2'>

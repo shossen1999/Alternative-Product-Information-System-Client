@@ -13,9 +13,9 @@ const QueryCardsTwo = ({ query }) => {
         ('0' + date.getSeconds()).slice(-2);
 
     return (
-        <div className="card flex flex-row bg-base-100 shadow-xl border border-gray-200 mx-10 md:mx-5 lg:mx-5 h-auto">
+        <div className="card flex md:flex-row lg:flex-row flex-col bg-base-100 shadow-xl border border-gray-200 mx-10 md:mx-5 lg:mx-5 h-auto">
             <figure className='flex-1'>
-                <img src={image} className="object-cover w-full h-full rounded-l-xl" alt={product_name} />
+                <img src={image} className="object-cover w-full h-full rounded-l-xl p-4" alt={product_name} />
             </figure>
             <div className='flex-1 flex flex-col justify-between p-4'>
                 <div className='flex justify-start items-center gap-2'>
