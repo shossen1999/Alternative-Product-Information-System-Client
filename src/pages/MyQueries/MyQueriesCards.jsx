@@ -97,11 +97,11 @@ const MyQueriesCards = ({ myQuery, queries, setQueries }) => {
                 <div className="card-actions w-full">
                     <Link to={`/queryDetails/${_id}`} className="btn btn-primary">View Details</Link>
                     <Link to={`/updateQuery/${_id}`}>
-                                   <button 
-                                   
-                                   className="btn btn-primary" onClick={() => handleUpdate(_id)}>Update</button>
-                                   
-                                   </Link>
+                        <button
+
+                            className="btn btn-primary" onClick={() => handleUpdate(_id)}>Update</button>
+
+                    </Link>
                     {/* <Link to={`/queryDetails/${_id}`} className="btn btn-primary">Delete</Link> */}
 
                     <button
