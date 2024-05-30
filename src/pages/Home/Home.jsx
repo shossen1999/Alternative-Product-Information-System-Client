@@ -1,6 +1,7 @@
 import Banner from "./Banner";
 import NewsLetter from "./NewsLetter";
 import RecentQueries from "./RecentQueries";
+import Review from "./Review";
 
 import SwipperSlider from "./SwipperSlider";
 
@@ -19,6 +20,9 @@ const Home = () => {
             </div>
             <div className="mt-10">
                 <NewsLetter></NewsLetter>
+            </div>
+            <div className="mt-10">
+               <Review></Review>
             </div>
         </div>
     );

@@ -68,7 +68,8 @@ const router = createBrowserRouter([
           element: <RecommendationsForMe />,
           loader: ({ params }) => fetch(`http://localhost:5000/recommendationForMe/${params.email}`)
             
-        }
+        },
+        
         
       ]
     },
