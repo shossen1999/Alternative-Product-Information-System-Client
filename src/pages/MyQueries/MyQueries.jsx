@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MyQueriesCards from './MyQueriesCards';
+import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
 
 const MyQueries = () => {
-    const myQueries = useLoaderData();
-    const [queries, setQueries] = useState(myQueries);
+    const { user } = useAuth();
+    const [queries, setQueries] = useState([]);
+    
+    useEffect(() => {
+        if (user?.email) {
+            const fetchQueries = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:5000/Queries/user/${user.email}`, { withCredentials: true });
+                    setQueries(response.data);
+                } catch (error) {
+                    console.error('Error fetching queries:', error);
+                }
+            };
+
+            fetchQueries();
+        }
+    }, [user]);
 
     const sortedQueries = queries.sort((a, b) => new Date(b.currentDate) - new Date(a.currentDate));
 

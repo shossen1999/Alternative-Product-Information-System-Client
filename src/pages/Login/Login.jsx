@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from "./SocialLogin";
+import axios from "axios";
 
 const Login = () => {
     const { signInUser } = useAuth();
@@ -13,24 +14,36 @@ const Login = () => {
         handleSubmit,
         formState: { errors }
     } = useForm();
-       
 
-     // navigation systems
-     const navigate = useNavigate();
-     const location = useLocation();
-     console.log(location);
-     const from = location?.state || "/"; 
+
+    // navigation systems
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
+    const from = location?.state || "/";
     const onSubmit = async (data) => {
         const { email, password } = data;
-        
+        // navigate(from);
         try {
             await signInUser(email, password)
-            .then((result) => {
-                if (result.user) {
-                    navigate(from);
-                }
-            });
-            
+                .then((result) => {
+                    // if (result.user) {
+                    //     navigate(from);
+                    // }
+                    const loggedInUser = result.user;
+                    console.log(loggedInUser);
+                    const user = { email };
+                    // navigate(location?.state ? location?.state : '/')
+                    // get access token 
+                    axios.post('http://localhost:5000/jwt', user,{withCredentials:true})
+                      .then(res => {
+                        console.log(res.data);
+                        if(res.data.success){
+                            navigate(from);
+                        }
+                      })
+                });
+
         } catch (error) {
             console.error("Login failed:", error.message);
             // Show error toast
@@ -40,9 +53,9 @@ const Login = () => {
 
     return (
         <div>
-           
+
             <div>
-            <ToastContainer />
+                <ToastContainer />
                 <h3 className="text-3xl text-center">Please Login</h3>
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body lg:w-1/2 mx-auto">
                     <div className="form-control">
@@ -70,10 +83,10 @@ const Login = () => {
                         <button className="btn btn-primary">Login</button>
                     </div>
                     <div>
-                    <SocialLogin></SocialLogin>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </form>
-                
+
                 <p className="text-center mt-4">Don't have an account? Please <Link className="text-blue-700 font-bold" to="/register">Register</Link></p>
             </div>
         </div>
