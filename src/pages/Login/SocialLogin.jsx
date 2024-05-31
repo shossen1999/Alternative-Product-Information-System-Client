@@ -28,9 +28,7 @@ const SocialLogin = () => {
                 <button
                     onClick={() => handleSocialLogin(googleLogin)}
                     className="btn btn-primary btn-sm btn-outline"><FcGoogle></FcGoogle>    Sign In With Google</button>
-                {/* <button
-                    onClick={() => handleSocialLogin(githubLogin)}
-                    className="btn btn-primary btn-sm btn-outline">Github</button> */}
+              
             </div>
 
         </>
