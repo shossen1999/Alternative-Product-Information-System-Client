@@ -57,7 +57,7 @@ const QueryDetails = () => {
             userName: name,
             recommenderEmail: user?.email,
             recommenderName: user?.displayName,
-            recommenderPhoto: user?.photoURL, // Include the photo URL
+            recommenderPhoto: user?.photoURL, 
             currentDate: new Date()
         };
 
@@ -131,7 +131,7 @@ const QueryDetails = () => {
                         </div>
                         <p>{email}</p>
                     </div>
-                    <Link to="/"><button className="btn btn-primary">Go Back to Home</button></Link>
+                    <Link to="/"> <button className="btn" style={{ backgroundColor: "#18555b", color: "white" }} >Go Back To Home</button></Link>
                 </div>
             </div>
             <div className="mt-10">
