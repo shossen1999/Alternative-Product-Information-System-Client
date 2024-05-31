@@ -20,13 +20,11 @@ const QueryDetails = () => {
     const [recommendationCount, setRecommendationCount] = useState(initialRecommendationCount);
 
     useEffect(() => {
-        // Fetch recommendations for the current query
         const fetchRecommendations = async () => {
             try {
                 const response = await fetch(`http://localhost:5000/recommendations/${query._id}`);
                 const data = await response.json();
                 setRecommendations(data);
-                console.log(data);
             } catch (error) {
                 console.error("Error fetching recommendations:", error);
             }
@@ -36,15 +34,12 @@ const QueryDetails = () => {
     }, [query._id]);
 
     var date = new Date(currentDate);
-
     var readableDate = date.getFullYear() + '-' +
         ('0' + (date.getMonth() + 1)).slice(-2) + '-' +
         ('0' + date.getDate()).slice(-2) + ' ' +
         ('0' + date.getHours()).slice(-2) + ':' +
         ('0' + date.getMinutes()).slice(-2) + ':' +
         ('0' + date.getSeconds()).slice(-2);
-
-    console.log(name);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -62,6 +57,7 @@ const QueryDetails = () => {
             userName: name,
             recommenderEmail: user?.email,
             recommenderName: user?.displayName,
+            recommenderPhoto: user?.photoURL, // Include the photo URL
             currentDate: new Date()
         };
 
@@ -85,7 +81,6 @@ const QueryDetails = () => {
                     recommendedProductImage: '',
                     recommendationReason: ''
                 });
-                // Update recommendations state and increment recommendation count
                 setRecommendations(prevState => [...prevState, newRecommendation]);
                 setRecommendationCount(prevCount => prevCount + 1);
             }
@@ -148,7 +143,7 @@ const QueryDetails = () => {
                         </figure>
                         <div className="card bg-base-100 shadow-xl border border-gray-200 p-4 rounded-lg flex-1">
                             <div className='flex justify-start items-center gap-2 mb-4'>
-                                <img src={user?.photoURL} className='w-[40px] h-[40px] rounded-full' alt="" />
+                                <img src={recommendation.recommenderPhoto} className='w-[40px] h-[40px] rounded-full' alt="" />
                                 <div>
                                     <h4 className="font-bold">{recommendation.recommenderName}</h4>
                                     <p>{new Date(recommendation.currentDate).toLocaleString()}</p>
