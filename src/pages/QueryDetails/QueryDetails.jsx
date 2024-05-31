@@ -7,8 +7,8 @@ import useAuth from '../../hooks/useAuth';
 const QueryDetails = () => {
     const query = useLoaderData();
     const { user } = useAuth();
-    // const touristsSpot = useLoaderData();
-    const { _id, product_name, product_brand, query_title, boycotting_reason, photo, email, name, currentDate, image, recommendationList, recommendationCount } = query;
+    const { _id, product_name, product_brand, query_title, boycotting_reason, photo, email, name, currentDate, image, recommendationCount: initialRecommendationCount } = query;
+
     const [recommendation, setRecommendation] = useState({
         recommendationTitle: '',
         recommendedProductName: '',
@@ -17,6 +17,7 @@ const QueryDetails = () => {
     });
 
     const [recommendations, setRecommendations] = useState([]);
+    const [recommendationCount, setRecommendationCount] = useState(initialRecommendationCount);
 
     useEffect(() => {
         // Fetch recommendations for the current query
@@ -33,6 +34,7 @@ const QueryDetails = () => {
 
         fetchRecommendations();
     }, [query._id]);
+
     var date = new Date(currentDate);
 
     var readableDate = date.getFullYear() + '-' +
@@ -42,7 +44,6 @@ const QueryDetails = () => {
         ('0' + date.getMinutes()).slice(-2) + ':' +
         ('0' + date.getSeconds()).slice(-2);
 
-    // print(readableDate);
     console.log(name);
 
     const handleChange = (e) => {
@@ -84,15 +85,17 @@ const QueryDetails = () => {
                     recommendedProductImage: '',
                     recommendationReason: ''
                 });
-
-
+                // Update recommendations state and increment recommendation count
+                setRecommendations(prevState => [...prevState, newRecommendation]);
+                setRecommendationCount(prevCount => prevCount + 1);
             }
         } catch (error) {
             console.error("Error adding recommendation:", error);
         }
     };
+
     return (
-        <div >
+        <div>
             <Helmet>
                 <title>Query Details</title>
             </Helmet>
@@ -145,7 +148,7 @@ const QueryDetails = () => {
                         </figure>
                         <div className="card bg-base-100 shadow-xl border border-gray-200 p-4 rounded-lg flex-1">
                             <div className='flex justify-start items-center gap-2 mb-4'>
-                                <img src={photo} className='w-[40px] h-[40px] rounded-full' alt="" />
+                                <img src={user?.photoURL} className='w-[40px] h-[40px] rounded-full' alt="" />
                                 <div>
                                     <h4 className="font-bold">{recommendation.recommenderName}</h4>
                                     <p>{new Date(recommendation.currentDate).toLocaleString()}</p>
@@ -161,7 +164,6 @@ const QueryDetails = () => {
                         </div>
                     </div>
                 ))}
-
             </div>
 
             <div>
@@ -236,7 +238,6 @@ const QueryDetails = () => {
                         </div>
                     </form>
                 </section>
-
             </div>
         </div>
     );
