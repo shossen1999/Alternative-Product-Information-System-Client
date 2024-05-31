@@ -5,7 +5,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
+import axios from 'axios';
+//https://alternative-product-information-system-server.vercel.app
 const RecentQueries = () => {
   const [queries, setQueries] = useState([]);
 
@@ -13,15 +14,12 @@ const RecentQueries = () => {
   useEffect(() => {
     const fetchQueries = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/recent-queries');
-
-        const data = await response.json();
-        setQueries(data);
-
+          const response = await axios.get('https://alternative-product-information-system-server.vercel.app/api/recentQueries');
+          setQueries(response.data);
       } catch (error) {
-        console.error('Error fetching recent queries:', error);
+          console.error('Error fetching queries:', error);
       }
-    };
+  };
 
     fetchQueries();
   }, []);
@@ -40,7 +38,7 @@ const RecentQueries = () => {
   return (
     <div className="h-[600px] container mx-auto my-10 ">
       <h1 className='text-center text-3xl font-bold mb-4'>Recent Queries</h1>
-      
+
       <Swiper
 
         modules={[Navigation, Pagination, Scrollbar, A11y]}

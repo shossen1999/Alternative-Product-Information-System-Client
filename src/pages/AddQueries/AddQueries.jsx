@@ -34,7 +34,7 @@ const AddQueries = () => {
         console.log(newQuery);
 
 
-        fetch('http://localhost:5000/Queries', {
+        fetch('https://alternative-product-information-system-server.vercel.app/Queries', {
             method: 'POST',
             // ki dhoroner data send krbo tar jnno headers use krte hoy
             headers: {

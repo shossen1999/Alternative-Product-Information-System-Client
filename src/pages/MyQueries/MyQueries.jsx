@@ -13,7 +13,7 @@ const MyQueries = () => {
         if (user?.email) {
             const fetchQueries = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:5000/Queries/user/${user.email}`, { withCredentials: true });
+                    const response = await axios.get(`https://alternative-product-information-system-server.vercel.app/Queries/user/${user.email}`, { withCredentials: true });
                     setQueries(response.data);
                 } catch (error) {
                     console.error('Error fetching queries:', error);

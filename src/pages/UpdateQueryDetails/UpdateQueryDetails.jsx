@@ -13,7 +13,7 @@ const UpdateQueryDetails = () => {
     const [spot,setSpot]=useState({});
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/singleQuery/${id}`)
+        fetch(`https://alternative-product-information-system-server.vercel.app/singleQuery/${id}`)
         .then(res =>res.json())
         .then(data =>{
             setSpot(data)
@@ -47,7 +47,7 @@ const UpdateQueryDetails = () => {
         }
         console.log(updatedQuery);
 
-        fetch(`http://localhost:5000/updatedQuery/${id}`,{
+        fetch(`https://alternative-product-information-system-server.vercel.app/updatedQuery/${id}`,{
             method:'PUT',
             // ki dhoroner data send krbo tar jnno headers use krte hoy
             headers: {

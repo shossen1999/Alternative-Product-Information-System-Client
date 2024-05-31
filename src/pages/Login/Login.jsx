@@ -16,26 +16,23 @@ const Login = () => {
     } = useForm();
 
 
-    // navigation systems
+    
     const navigate = useNavigate();
     const location = useLocation();
     console.log(location);
     const from = location?.state || "/";
     const onSubmit = async (data) => {
         const { email, password } = data;
-        // navigate(from);
+       
         try {
             await signInUser(email, password)
                 .then((result) => {
-                    // if (result.user) {
-                    //     navigate(from);
-                    // }
+                    
                     const loggedInUser = result.user;
                     console.log(loggedInUser);
                     const user = { email };
-                    // navigate(location?.state ? location?.state : '/')
-                    // get access token 
-                    axios.post('http://localhost:5000/jwt', user,{withCredentials:true})
+                    
+                    axios.post('https://alternative-product-information-system-server.vercel.app/jwt', user,{withCredentials:true})
                       .then(res => {
                         console.log(res.data);
                         if(res.data.success){
@@ -46,7 +43,7 @@ const Login = () => {
 
         } catch (error) {
             console.error("Login failed:", error.message);
-            // Show error toast
+            
             toast.error("Invalid email or password");
         }
     };

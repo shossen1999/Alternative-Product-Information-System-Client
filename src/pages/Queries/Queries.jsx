@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import QueryCards from './QueryCards';
 import QueryCardsOne from './QueryCardsOne';
 import QueryCardsTwo from './QueryCardsTwo'; 
+import axios from 'axios';
 
 const Queries = () => {
-    const queriesData = useLoaderData();
     const [searchQuery, setSearchQuery] = useState('');
     const [sortedQueries, setSortedQueries] = useState([]);
-    const [gridColumns, setGridColumns] = useState(3); 
+    const [gridColumns, setGridColumns] = useState(3);
+    const [queriesData, setQueriesData] = useState([]);
+
+    useEffect(() => {
+        const fetchQueries = async () => {
+            try {//https://alternative-product-information-system-server.vercel.app/
+                const response = await axios.get("https://alternative-product-information-system-server.vercel.app/Queries", { withCredentials: true });
+                setQueriesData(response.data);
+            } catch (error) {
+                console.error('Error fetching queries:', error);
+            }
+        };
+
+        fetchQueries();
+    }, []);
 
     useEffect(() => {
         const sortedData = [...queriesData].sort((a, b) => new Date(b.currentDate) - new Date(a.currentDate));

@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         {
           path:"/allQueries",
           element:<Queries></Queries>,
-          loader:()=>fetch('http://localhost:5000/Queries')
+          // loader:()=>fetch('https://alternative-product-information-system-server.vercel.app/Queries')
 
         },
         {
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         {
           path:"/queryDetails/:id",
           element:<QueryDetails></QueryDetails>,
-          loader:({params})=>fetch(`http://localhost:5000/Queries/${params.id}`)
+          loader:({params})=>fetch(`https://alternative-product-information-system-server.vercel.app/Queries/${params.id}`)
         },
         {
           path:"/updateQuery/:id",
@@ -61,12 +61,12 @@ const router = createBrowserRouter([
         {
           path:"/myRecommendations/:email",
           element:<MyRecommendation></MyRecommendation>,
-          loader:({params})=>fetch(`http://localhost:5000/recommendations/user/${params.email}`)
+          loader:({params})=>fetch(`https://alternative-product-information-system-server.vercel.app/recommendations/user/${params.email}`)
         },
         {
           path: "/recommendationsForMe/:email",
           element: <RecommendationsForMe />,
-          loader: ({ params }) => fetch(`http://localhost:5000/recommendationForMe/${params.email}`)
+          loader: ({ params }) => fetch(`https://alternative-product-information-system-server.vercel.app/recommendationForMe/${params.email}`)
             
         },
         

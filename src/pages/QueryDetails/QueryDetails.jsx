@@ -22,7 +22,7 @@ const QueryDetails = () => {
     useEffect(() => {
         const fetchRecommendations = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/recommendations/${query._id}`);
+                const response = await fetch(`https://alternative-product-information-system-server.vercel.app/recommendations/${query._id}`);
                 const data = await response.json();
                 setRecommendations(data);
             } catch (error) {
@@ -62,7 +62,7 @@ const QueryDetails = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/addRecommendation', {
+            const response = await fetch('https://alternative-product-information-system-server.vercel.app/addRecommendation', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newRecommendation)
