@@ -73,7 +73,7 @@ const QueryDetails = () => {
                     title: 'Success!',
                     text: 'Recommendation Added Successfully',
                     icon: 'success',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'OK'
                 });
                 setRecommendation({
                     recommendationTitle: '',

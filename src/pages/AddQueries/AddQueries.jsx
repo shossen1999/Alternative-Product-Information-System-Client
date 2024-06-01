@@ -52,7 +52,7 @@ const AddQueries = () => {
                         title: 'Success!',
                         text: 'Query Added Successfully',
                         icon: 'success',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'OK'
                     });
                     console.log("data inserted");
                     // form.reset();
