@@ -63,7 +63,7 @@ const Queries = () => {
             <Helmet>
                 <title>All Queries</title>
             </Helmet>
-            <h2>All Queries: {filteredQueries.length}</h2>
+            {/* <h2>All Queries: {filteredQueries.length}</h2> */}
 
             <div className='text-center'>
                 <input

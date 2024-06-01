@@ -59,7 +59,7 @@ const MyRecommendation = () => {
     const rowColors = ["#f8d7da", "#d4edda", "#d1ecf1", "#fcedd8", "#f4d7da"];
     return (
         <div>
-            <h2>My recommendations: {recommendations.length}</h2>
+            {/* <h2>My recommendations: {recommendations.length}</h2> */}
             <Helmet>
                 <title>My recommendations</title>
             </Helmet>

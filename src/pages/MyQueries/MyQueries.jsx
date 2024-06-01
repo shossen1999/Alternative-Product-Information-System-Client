@@ -31,7 +31,7 @@ const MyQueries = () => {
             <Helmet>
                 <title>My Queries</title>
             </Helmet>
-            <h2>My Queries: {sortedQueries.length}</h2>
+            {/* <h2>My Queries: {sortedQueries.length}</h2> */}
 
             <header>
                 <div
