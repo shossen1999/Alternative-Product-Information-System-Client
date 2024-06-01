@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import './MyRecommendation.css';
 
 const MyRecommendation = () => {
     const myRecommendations = useLoaderData();
@@ -68,13 +69,24 @@ const MyRecommendation = () => {
                     <thead>
                         <tr style={{ color: "black" }}>
                             <th></th>
-                            <th>Recommendation Product Image</th>
-                            <th>Recommendation Title </th>
-                            <th>Recommendation Product Name</th>
-                            <th>Recommendation Reason</th>
-                            <th>Delete</th>
+                            <th className="header-recommendation-product-image">
+                                <span>Recommendation Product Image</span>
+                            </th>
+                            <th className="header-recommendation-title">
+                                <span>Recommendation Title</span>
+                            </th>
+                            <th className="header-recommendation-product-name">
+                                <span> Product Name</span>
+                            </th>
+                            <th className="header-recommendation-reason">
+                                <span> Reason</span>
+                            </th>
+                            <th className="header-delete">
+                                <span>Delete</span>
+                            </th>
                         </tr>
                     </thead>
+
                     <tbody>
                         {recommendations.map((recommendation, index) => (
                             <tr key={recommendation._id} style={{ color: "black", padding: "5px 0px", backgroundColor: rowColors[index % rowColors.length] }}>

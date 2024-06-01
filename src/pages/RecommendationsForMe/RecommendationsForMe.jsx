@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-
+import './RecommendationsForMe.css'; 
 const RecommendationsForMe = () => {
   const recommendations = useLoaderData();
   console.log("Frontend Recommendations: ", recommendations);
@@ -15,15 +15,23 @@ const RecommendationsForMe = () => {
     {recommendations.length > 0 ? (
       <div className="overflow-x-auto py-6 md:py-12 lg:py-12" style={{ backgroundColor: "#f0f0f0" }}>
         <table className="table table-xs" style={{ width: "100%", margin: 0 }}>
-          <thead>
-            <tr style={{ color: "black" }}>
-              <th></th>
-              <th>Recommendation Product Image</th>
-              <th>Recommendation Title</th>
-              <th>Recommendation Product Name</th>
-              <th>Recommendation Reason</th>
-            </tr>
-          </thead>
+        <thead>
+              <tr style={{ color: "black" }}>
+                <th></th>
+                <th className="header-recommendation-product-image">
+                  <span>Recommendation Product Image</span>
+                </th>
+                <th className="header-recommendation-title">
+                  <span>Recommendation Title</span>
+                </th>
+                <th className="header-recommendation-product-name">
+                  <span>Recommendation Product Name</span>
+                </th>
+                <th className="header-recommendation-reason">
+                  <span>Recommendation Reason</span>
+                </th>
+              </tr>
+            </thead>
           <tbody>
             {recommendations.map((recommendation, index) => (
               <tr key={recommendation._id} style={{ color: "black", padding: "5px 0px", backgroundColor: rowColors[index % rowColors.length], height: "100px" }}>

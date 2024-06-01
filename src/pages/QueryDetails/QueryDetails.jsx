@@ -57,7 +57,7 @@ const QueryDetails = () => {
             userName: name,
             recommenderEmail: user?.email,
             recommenderName: user?.displayName,
-            recommenderPhoto: user?.photoURL, 
+            recommenderPhoto: user?.photoURL,
             currentDate: new Date()
         };
 
@@ -95,9 +95,10 @@ const QueryDetails = () => {
                 <title>Query Details</title>
             </Helmet>
             <div className="flex flex-col md:flex-row lg:flex-row gap-10 bg-gray-200">
-                <div className="md:w-[40%] lg:w-[40%]">
-                    <img className="p-5 rounded-[20px] h-full" src={image} alt="" />
+                <div className="md:w-[40%] lg:w-[40%] w-full">
+                    <img className="p-5 rounded-[20px] w-full h-auto object-cover" src={image} alt="" />
                 </div>
+
                 <div className="p-10 md:p-5 lg:p-5 flex flex-col space-y-2">
                     <div className='flex justify-start items-center gap-2 p-4'>
                         <div>
